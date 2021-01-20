@@ -1,0 +1,68 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<SCRIPT type="text/javascript">
+	window.history.forward();
+	function noBack() { window.history.forward(); }
+</SCRIPT>
+</HEAD>
+<BODY onload="noBack();" 
+	onpageshow="if (event.persisted) noBack();" onunload="">
+</head>
+<body>
+	<br><br>
+	<center>
+	<section class="team" id="team">
+		<div class="container">
+			<div class="row">
+				<div class="team-heading text-center">
+					<h2>Appointment Fees</h2>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<font size="5px">
+	<form name="contact" method="post" action="{% url 'pay' %}">
+		{% csrf_token %}
+		<table>
+			<tr>
+				<td><input type="hidden" name="appointment_id" value="{{appointment.id}}"></td>
+			</tr>
+			<tr>
+				<td>Appointment Fees</td>
+				<td><input type="text" name="appointment_fees" value="{{appointment.doctor.consulting_charge}}"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" value="Pay">
+				</td>
+			</tr>
+		</table>
+	</form>
+	</font>
+	
+
+<br><br><br><br><br>
+	<!-- footer starts here -->
+	<footer class="footer clearfix">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 footer-para">
+					<p>&copy;Mostafizur All right reserved</p>
+				</div>
+				<div class="col-xs-6 text-right">
+					<a href=""><i class="fa fa-facebook"></i></a>
+					<a href=""><i class="fa fa-twitter"></i></a>
+					<a href=""><i class="fa fa-skype"></i></a>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
+{% endblock %}
